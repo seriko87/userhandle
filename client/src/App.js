@@ -1,7 +1,7 @@
 import './App.css';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/login/Login';
-import Signup from './pages/signup/Signup';
+import Register from './pages/register/Register';
 import ForgotPassword from './pages/forgotPass/ForgotPassword';
 import Home from './pages/home/Home';
 import Error from './pages/error/Error';
@@ -13,8 +13,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
-          path="signup"
-          element={!currentUser ? <Signup /> : <Navigate to="/home" />}
+          path="register"
+          element={!currentUser ? <Register /> : <Navigate to="/home" />}
         />
         <Route
           path="login"

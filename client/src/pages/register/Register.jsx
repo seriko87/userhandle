@@ -1,24 +1,34 @@
 import React from 'react';
-import './login.css';
-import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-const Login = () => {
+const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [userName, setUserName] = useState('');
   const [alert, setAlert] = useState(false);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('login');
     setAlert(!alert);
   };
 
-  console.log(email, password);
   return (
     <div className="container">
-      <h1>Login</h1>
+      <h1>Register</h1>
       <form>
+        <div className="inputContainer">
+          <label htmlFor="name">UserName</label>
+          <input
+            type="name"
+            name="name"
+            id="name"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          />
+        </div>
         <div className="inputContainer">
           <label htmlFor="email">Email</label>
           <input
@@ -44,24 +54,21 @@ const Login = () => {
           />
         </div>
         {alert && (
-          <span style={{ color: '#ca0909' }} className="alert">
-            'Problem with register, try later'
+          <span style={{ color: '#ca0909' }}>
+            "Problem with register, try later"
           </span>
         )}
         <button className="btn" onClick={handleSubmit}>
-          Login
+          Register
         </button>
       </form>
       <div className="linkContainer">
-        <Link to="/register" className="link">
-          Register
-        </Link>
-        <Link to="/forgot-password" className="link">
-          Forgot Password?
+        <Link to="/login" className="link">
+          Already have account? Login
         </Link>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Register;
