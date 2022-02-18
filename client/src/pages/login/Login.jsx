@@ -2,15 +2,17 @@ import React from 'react';
 import './login.css';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { axios } from 'axios';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [alert, setAlert] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('login');
+    const response = await axios.post('https://localhost:3001/api/login');
+
     setAlert(!alert);
   };
 

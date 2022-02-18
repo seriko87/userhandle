@@ -7,22 +7,25 @@ import Home from './pages/home/Home';
 import Error from './pages/error/Error';
 
 function App() {
-  const currentUser = false;
+  const currentUser = true;
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={currentUser ? <Home /> : <Navigate to="/login" />}
+        />
         <Route
           path="register"
-          element={!currentUser ? <Register /> : <Navigate to="/home" />}
+          element={!currentUser ? <Register /> : <Navigate to="/" />}
         />
         <Route
           path="login"
-          element={!currentUser ? <Login /> : <Navigate to="/home" />}
+          element={!currentUser ? <Login /> : <Navigate to="/" />}
         />
         <Route
           path="forgot-password"
-          element={!currentUser ? <ForgotPassword /> : <Navigate to="/home" />}
+          element={!currentUser ? <ForgotPassword /> : <Navigate to="/" />}
         />
         <Route path="*" element={<Error />} />
       </Routes>

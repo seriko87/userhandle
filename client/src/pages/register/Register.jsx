@@ -23,9 +23,9 @@ const Register = () => {
             type="name"
             name="name"
             id="name"
-            value={email}
+            value={userName}
             onChange={(e) => {
-              setEmail(e.target.value);
+              setUserName(e.target.value);
             }}
           />
         </div>
