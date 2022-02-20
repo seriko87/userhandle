@@ -9,6 +9,8 @@ db.run(
   'CREATE TABLE Users (id int AUTO_INCREMENT, name varchar(32), email varchar(64), password varchar(255));'
 );
 
+// I used your API to handle all requests, but it does have some mistakes had to be corrected, also added some error handling.
+
 router.post('/register', (req, res) => {
   console.log('API: register');
   const name = req.body.name;
