@@ -1,5 +1,5 @@
 import React from 'react';
-import './error.css';
+
 import { Link } from 'react-router-dom';
 
 const Error = () => {
@@ -8,7 +8,7 @@ const Error = () => {
       <div> Sorry something went wrong!!! </div>
 
       <Link to={'/'}>
-        <button className="errorBackBtn">Go Home</button>
+        <button className="btn">Go Home</button>
       </Link>
     </div>
   );

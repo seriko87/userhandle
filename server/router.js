@@ -16,16 +16,22 @@ router.post('/register', (req, res) => {
   const mail = req.body.email;
 
   if (!name || !pass || !mail) {
-    res.statusCode = 200;
-    res.json({ success: false });
+    res.status(401).json('empty fields');
     return;
   }
+  db.all(`SELECT * FROM Users WHERE email='${mail}';`, (err, results) => {
+    if (results.length === 0) {
+      db.run(
+        `INSERT INTO Users (name, email, password) VALUES ('${name}', '${mail}', '${hash}');`
+      );
+      res.statusCode = 200;
+      res.json({ success: true });
+    } else {
+      res.status(401).json('User Already Exist');
+    }
+  });
+
   const hash = bcrypt.hashSync(pass, 4);
-  db.run(
-    `INSERT INTO Users (name, email, password) VALUES ('${name}', '${mail}', '${hash}');`
-  );
-  res.statusCode = 200;
-  res.json({ success: true });
 });
 
 router.post('/login', (req, res) => {
@@ -34,24 +40,21 @@ router.post('/login', (req, res) => {
   const mail = req.body.email;
 
   if (!pass || !mail) {
-    res.statusCode = 200;
-    res.json({ success: false });
+    res.status(401).json('Please enter the info first');
     return;
   }
   db.all(
     `SELECT name, password FROM Users WHERE email='${mail}';`,
     (err, results) => {
+      console.log(results);
       if (!results || !results.length) {
-        res.statusCode = 200;
-        res.json({ success: false });
-        return;
+        res.status(401).json('Wrong email or password');
       } else if (bcrypt.compareSync(pass, results[0].password)) {
         res.statusCode = 200;
         res.json({ success: true, name: results[0].name });
-        return;
+      } else {
+        res.status(401).json('Wrong password');
       }
-      res.statusCode = 200;
-      res.json({ success: false });
     }
   );
 });
@@ -61,14 +64,12 @@ router.post('/forgot', (req, res) => {
   const mail = req.body.email;
 
   if (!mail) {
-    res.statusCode = 200;
-    res.json({ success: false });
+    res.status(401).json('Wrong email');
     return;
   }
   db.all(`SELECT * FROM Users WHERE email='${mail}';`, (err, results) => {
     if (!results || !results.length) {
-      res.statusCode = 200;
-      res.json({ success: false });
+      res.status(401).json('Email doesn`t exist');
       return;
     }
     res.statusCode = 200;

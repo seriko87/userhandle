@@ -28,6 +28,7 @@ h2,
 h3 {
   margin: 0;
   padding: 0;
+  font-weight: normal;
 }
 
 a {
@@ -38,10 +39,10 @@ a {
 
 /* Common classes */
 .container {
-  width: 500px;
+  width: 400px;
   height: 100%;
   border-radius: 10px;
-  background-color: #70a6b6;
+  background-color: #1595bd;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -49,6 +50,8 @@ a {
   align-items: center;
   padding-top: 20px;
   padding-bottom: 20px;
+  -webkit-box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.28);
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.28);
 }
 .container form {
   display: flex;
@@ -65,27 +68,44 @@ a {
   font-size: 16px;
   align-items: flex-start;
   gap: 5px;
+  position: relative;
 }
 .inputContainer input {
-  height: 40px;
+  height: 45px;
   border: none;
   border-radius: 5px;
   width: 100%;
+  padding-left: 35px;
+  -webkit-box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.28);
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.28);
+  font-size: 16px;
 }
 .inputContainer label {
   font-size: 18px;
   color: white;
+}
+.inputContainer input:focus {
+  outline: none !important;
+  border-bottom: 2px solid #4037a4;
+}
+.inputContainer input::placeholder {
+  color: grey;
 }
 
 .btn {
   width: 120px;
   height: 40px;
   border-radius: 5px;
-  background-color: #e54b4b;
+  background-color: #3b00a4;
   color: white;
   font-size: 18px;
   border: none;
   cursor: pointer;
+  -webkit-box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.28);
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.28);
+}
+.btn:hover {
+  background-color: #4a09b9;
 }
 
 .link:hover {
@@ -96,4 +116,34 @@ a {
   display: flex;
   justify-content: space-between;
   width: 350px;
+}
+
+.errorMessage {
+  color: #ca0909;
+}
+
+.icons {
+  width: 24px;
+  color: #636264;
+  position: absolute;
+  bottom: 10px;
+  left: 7px;
+}
+.errorPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  gap: 20px;
+  color: #3b00a4;
+}
+
+@media screen and (max-width: 500px) {
+  .container {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+  }
 }
